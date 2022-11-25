@@ -10,7 +10,7 @@ import pandas as pd
 This is some _markdown_.
 '''
 
-url_1='https://fbref.com/en/partidoes/109ad6ba/Argentina-Saudi-Arabia-November-22-2022-World-Cup#shots_all'
+url_1='https://fbref.com/en/matches/bfc75e3c/Qatar-Senegal-November-25-2022-World-Cup'
 urls=[url_1]
 
 def cambio_min(partido):
