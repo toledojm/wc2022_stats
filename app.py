@@ -43,7 +43,7 @@ levels = np.tile([-5, 5, -3, 3, -1, 1],
 
 # Create figure and plot a stem plot with the date
 fig, ax = plt.subplots(figsize=(12, 6), constrained_layout=True)
-titulo=equipos[0]+'vs. '+equipos[1]
+titulo=equipos[0]+' vs. '+equipos[1]
 ax.set(title=titulo)
 
 ax.vlines(partido.Minute, 0, levels, color="tab:red")  # The vertical stems.
