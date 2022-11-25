@@ -13,7 +13,18 @@ This is some _markdown_.
 url_1='https://fbref.com/en/matches/bfc75e3c/Qatar-Senegal-November-25-2022-World-Cup'
 urls=[url_1]
 
-def cambio_min(partido):
+
+ 
+
+for url in urls:
+
+    df=pd.read_html(url)
+    partido=df[17].dropna(axis=0,how='all')
+    team1=df[18].dropna(axis=0,how='all')
+    team2=df[19].dropna(axis=0,how='all')
+    partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
+    
+    equipos=[df[2].columns[0][0],df[2].columns[1][1]]
     suma=[]
     for x in partido.Minute:
         min=x.split('+')
@@ -24,16 +35,6 @@ def cambio_min(partido):
         else:
             suma.append(int(min[0]))
     partido.Minute=suma
-
-for url in urls:
-
-    df=pd.read_html(url)
-    partido=df[17].dropna(axis=0,how='all')
-    team1=df[18].dropna(axis=0,how='all')
-    team2=df[19].dropna(axis=0,how='all')
-    partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
-    cambio_min(partido)
-    equipos=[df[2].columns[0][0],df[2].columns[1][1]]
 
 
 def plot(partido,equipos):
