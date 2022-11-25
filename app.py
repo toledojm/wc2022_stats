@@ -54,6 +54,8 @@ def plot(match):
     
     return fig
 
+fig=plot(match)
+
 st.pyplot(fig)
 
 
