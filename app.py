@@ -11,30 +11,36 @@ This is some _markdown_.
 '''
 
 url_1='https://fbref.com/en/matches/bfc75e3c/Qatar-Senegal-November-25-2022-World-Cup'
+url_2='https://fbref.com/en/matches/457c3fcf/Brazil-Serbia-November-24-2022-World-Cup'
 urls=[url_1]
 
+dict={'Qatar-Senegal-November-25':url_1, 'Brazil-Serbia-November-24':url_2}
+lista=dict.keys()
+eleccion = st.selectbox(
+    'Elegir partido: ',
+    lista)
 
+st.write('You selected:', eleccion)
  
 
-for url in urls:
 
-    df=pd.read_html(url)
-    partido=df[17].dropna(axis=0,how='all')
-    team1=df[18].dropna(axis=0,how='all')
-    team2=df[19].dropna(axis=0,how='all')
-    partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
+df=pd.read_html(dict[eleccion])
+partido=df[17].dropna(axis=0,how='all')
+team1=df[18].dropna(axis=0,how='all')
+team2=df[19].dropna(axis=0,how='all')
+partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
     
-    equipos=[df[2].columns[0][0],df[2].columns[1][0]]
-    suma=[]
-    for x in partido.Minute:
-        min=x.split('+')
-        i = 2
-        if i == len(min):
-            nuevo_min=int(min[0])+int(min[1])
-            suma.append(nuevo_min)
-        else:
-            suma.append(int(min[0]))
-    partido.Minute=suma
+equipos=[df[2].columns[0][0],df[2].columns[1][0]]
+suma=[]
+for x in partido.Minute:
+    min=x.split('+')
+    i = 2
+    if i == len(min):
+        nuevo_min=int(min[0])+int(min[1])
+        suma.append(nuevo_min)
+    else:
+        suma.append(int(min[0]))
+partido.Minute=suma
 
 
 
