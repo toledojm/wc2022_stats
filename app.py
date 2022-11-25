@@ -73,6 +73,9 @@ ax.yaxis.set_visible(False)
 
 ax.margins(y=0.21)
 
+
+st.dataframe(df[2],use_container_width=False)
+
 st.pyplot(fig)
 
 
