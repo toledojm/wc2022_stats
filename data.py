@@ -15,13 +15,20 @@ def cambio_min(match):
             suma.append(int(min[0]))
     match.Minute=suma
 
-for url in urls:
+def buscar(urls):
 
-    df=pd.read_html(url)
-    match=df[17].dropna(axis=0,how='all')
-    team1=df[18].dropna(axis=0,how='all')
-    team2=df[19].dropna(axis=0,how='all')
-    match.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
-    cambio_min(match)
+    for url in urls:
+
+        df=pd.read_html(url)
+        match=df[17].dropna(axis=0,how='all')
+        team1=df[18].dropna(axis=0,how='all')
+        team2=df[19].dropna(axis=0,how='all')
+        match.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
+        cambio_min(match)
+
+    return match, df
+
+
+match, df=buscar(urls)
 
 
