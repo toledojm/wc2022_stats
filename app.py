@@ -13,7 +13,7 @@ This is some _markdown_.
 
 
 
-def plot(match):
+def plot(match,df):
     # Choose some nice levels
     levels = np.tile([-5, 5, -3, 3, -1, 1],
                     int(np.ceil(len(match.Minute)/6)))[:len(match.Minute)]
@@ -54,7 +54,7 @@ def plot(match):
     
     return fig
 
-fig=plot(match)
+fig=plot(match,df)
 
 st.pyplot(fig)
 
