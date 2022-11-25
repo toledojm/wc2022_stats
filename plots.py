@@ -40,4 +40,6 @@ def plot(match):
 
 
     ax.margins(y=0.21)
-    return plt.show()
+    
+    
+    return fig
