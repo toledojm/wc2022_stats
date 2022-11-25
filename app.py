@@ -25,31 +25,25 @@ def cambio_min(partido):
             suma.append(int(min[0]))
     partido.Minute=suma
 
-def buscar(urls):
+for url in urls:
 
-    for url in urls:
-
-        df=pd.read_html(url)
-        partido=df[17].dropna(axis=0,how='all')
-        team1=df[18].dropna(axis=0,how='all')
-        team2=df[19].dropna(axis=0,how='all')
-        partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
-        cambio_min(partido)
-        equipos=[df[2].columns[0][0],[2].columns[1][1]]
-
-    return partido, equipos
+    df=pd.read_html(url)
+    partido=df[17].dropna(axis=0,how='all')
+    team1=df[18].dropna(axis=0,how='all')
+    team2=df[19].dropna(axis=0,how='all')
+    partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
+    cambio_min(partido)
+    equipos=[df[2].columns[0][0],[2].columns[1][1]]
 
 
-partido, df=buscar(urls)
-
-def plot(partido,df):
+def plot(partido,equipos):
     # Choose some nice levels
     levels = np.tile([-5, 5, -3, 3, -1, 1],
                     int(np.ceil(len(partido.Minute)/6)))[:len(partido.Minute)]
 
     # Create figure and plot a stem plot with the date
     fig, ax = plt.subplots(figsize=(12, 6), constrained_layout=True)
-    titulo=df[2].columns[0][0]+'vs. '+[2].columns[1][1]
+    titulo=equipos[0]+'vs. '+equipos[1]
     ax.set(title=titulo)
 
     ax.vlines(partido.Minute, 0, levels, color="tab:red")  # The vertical stems.
