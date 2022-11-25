@@ -33,7 +33,7 @@ for url in urls:
     team2=df[19].dropna(axis=0,how='all')
     partido.columns=['Minute'	,'Player'	,'Squad','xG'	,'PSxG'	,'Outcome'	,'Distance'	,'Body Part'	,'Notes'	,'sca_1_Player'	,'sca_1_Event'	,'sca_2_Player'	,'sca_2_Event']
     cambio_min(partido)
-    equipos=[df[2].columns[0][0],[2].columns[1][1]]
+    equipos=[df[2].columns[0][0],df[2].columns[1][1]]
 
 
 def plot(partido,equipos):
